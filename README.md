@@ -13,6 +13,24 @@ These are helpful, keep them around until we can publish and actually use them.
 react/redux api for interacting with Horizon. Interacts directly with horizon
 and exposes an opinionated abstraction over the available resources.
 
+A root provider takes a horizon URL and exposes a number of functions for
+requesting resources or building further requests.
+
+```js
+<StellarProvider horizonServer="https://...">
+  <Payments from to type sentAsset receivedAsset>
+  </Payments>
+  <Wallet forAccount minBalance>
+  </Wallet>
+  <Trustlines forAccount>
+  </Trustlines>
+  <Trades forAccount>
+  </Trades>
+  <Offers forAccount>
+  </Offers>
+</Provider>
+```
+
 ## Authors
 
 - Carl Vitullo [@cvitullo](https://twitter.com/cvitullo)
