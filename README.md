@@ -33,7 +33,7 @@ requesting resources or building further requests.
 
 ## Authors
 
-- Carl Vitullo [@cvitullo](https://twitter.com/cvitullo)
+* Carl Vitullo [@cvitullo](https://twitter.com/cvitullo)
 
 ## Contributors
 
