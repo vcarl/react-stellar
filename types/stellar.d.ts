@@ -1,3 +1,5 @@
+import Big from 'big.js';
+
 export type IssuedAssetType = 'credit_alphanum4' | 'credit_alphanum12';
 export type NativeAssetType = 'native';
 export interface NativeAsset {
@@ -16,15 +18,20 @@ export interface Asset {
   assetCode: string;
 }
 
-interface IssuedBalance {
+interface RawIssuedBalance {
   balance: string;
   asset_type: NativeAssetType;
 }
-interface NativeBalance {
+interface RawNativeBalance {
   balance: string;
   limit: string;
   asset_type: IssuedAssetType;
   asset_code: string;
   asset_issuer: string;
 }
-export type Balance = IssuedBalance | NativeBalance;
+export type RawBalance = RawIssuedBalance | RawNativeBalance;
+export interface Balance {
+  balance: Big;
+  limit: Big;
+  asset: Asset;
+}
