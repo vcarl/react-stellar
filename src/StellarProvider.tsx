@@ -1,12 +1,21 @@
 import React from 'react';
 import Axios, { AxiosInstance } from 'axios';
 import createReactContext, { Context } from 'create-react-context';
+import { Account } from '../types/stellar';
 import { createHorizonInstance } from './HorizonApi';
 
 export interface ProviderContext {
   state: any;
-  horizonServer: AxiosInstance;
+  horizon: AxiosInstance;
   setState: any;
+}
+
+export interface Accounts {
+  [key: string]: Account;
+}
+
+interface State {
+  accounts: Accounts;
 }
 
 interface Props {
@@ -17,15 +26,15 @@ const HorizonServerContext: Context<ProviderContext> = createReactContext<
   ProviderContext
 >({
   state: {},
-  horizonServer: Axios.create({ baseURL: '' }),
+  horizon: Axios.create({ baseURL: '' }),
   setState: () => {},
 });
 
 export const { Consumer } = HorizonServerContext;
 
-export class StellarProvider extends React.Component<Props> {
+export class StellarProvider extends React.Component<Props, State> {
   state = {
-    account: null,
+    accounts: {},
   };
 
   instance = createHorizonInstance(this.props.horizonServer);
@@ -35,7 +44,7 @@ export class StellarProvider extends React.Component<Props> {
       <HorizonServerContext.Provider
         value={{
           state: this.state,
-          horizonServer: this.instance,
+          horizon: this.instance,
           setState: this.setState,
         }}
       >

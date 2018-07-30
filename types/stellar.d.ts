@@ -35,3 +35,8 @@ export interface Balance {
   limit: Big;
   asset: Asset;
 }
+
+export interface Account {
+  id: string;
+  balances: Array<Balance>;
+}

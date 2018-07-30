@@ -1,13 +1,18 @@
 import React from 'react';
 import Big from 'big.js';
 import { AccountRecord } from 'stellar-sdk';
-import { RawBalance, Balance } from '../types/stellar';
-import { Consumer, ProviderContext } from './StellarProvider';
+import {
+  RawBalance,
+  Balance,
+  Account as ParsedStellarAccount,
+} from '../types/stellar';
+import { Consumer, ProviderContext, Accounts } from './StellarProvider';
 import { parseAsset } from './helpers/assets';
 
 interface Props {
-  render(props: ProviderContext): JSX.Element;
+  render(props: { account: ParsedStellarAccount }): JSX.Element;
   context: ProviderContext;
+  accountId: string;
   [key: string]: any;
 }
 
@@ -22,6 +27,7 @@ const parseBalances = (balances: Array<RawBalance>): Array<Balance> =>
       return {
         asset: parseAsset(balance),
         balance: Big(balance.balance),
+        // Total issued Lumens
         limit: Big('104144920420.1256628'),
       };
     }
@@ -36,16 +42,35 @@ const parseAccountResponse = ({
   id,
   balances,
 }: // TODO: account keys
-AccountRecord) => ({
+AccountRecord): ParsedStellarAccount => ({
   id,
   balances: parseBalances(balances),
-  // TODO: Map account keys to more useful values, parse numbers with Big.js
 });
 
 class Account extends React.Component<Props> {
-  componentDidMount() {}
+  componentDidMount() {
+    this.fetchAccount(this.props.accountId);
+  }
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.accountId !== this.props.accountId) {
+      this.fetchAccount(this.props.accountId);
+    }
+  }
+  fetchAccount = (publicKey: string) => {
+    const { horizon, setState } = this.props.context;
+    horizon.get(`/accounts/${this.props.accountId}`).then(({ data }) =>
+      setState(({ accounts }: { accounts: Accounts }) => ({
+        accounts: {
+          ...accounts,
+          [publicKey]: parseAccountResponse(data),
+        },
+      }))
+    );
+  };
   render() {
-    return this.props.render(this.props.context);
+    return this.props.render({
+      account: this.props.context.state.accounts[this.props.accountId],
+    });
   }
 }
 
