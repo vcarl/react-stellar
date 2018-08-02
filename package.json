@@ -21,7 +21,7 @@
     "start": "cp ./index.js ./dist/index.js && cross-env NODE_ENV=development rollup -w -c | tsc -w -p tsconfig.base.json",
     "prebuild": "rimraf dist",
     "build": "cross-env NODE_ENV=production tsc -p tsconfig.base.json  && rollup -c && rimraf compiled && cp ./index.js ./dist/index.js",
-    "format": "prettier --trailing-comma es5 --single-quote --write 'src/**/*' 'test/**/*' 'README.md'",
+    "format": "prettier --write 'src/**/*' 'test/**/*' 'README.md'",
     "precommit": "lint-staged",
     "storybook": "start-storybook -p 9001",
     "addc": "all-contributors add",
@@ -119,7 +119,7 @@
   },
   "lint-staged": {
     "**/*.{ts,tsx}": [
-      "prettier --trailing-comma es5 --single-quote --write",
+      "prettier",
       "git add"
     ]
   },
