@@ -44,7 +44,7 @@
       "check-open-brace",
       "check-whitespace"
     ],
-    "quotemark": [true, "single", "jsx-double"],
+    "quotemark": [true, "double", "jsx-double"],
     "radix": true,
     "semicolon": [false, "always"],
     "switch-default": true,

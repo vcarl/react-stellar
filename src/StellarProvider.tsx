@@ -27,8 +27,10 @@ const HorizonServerContext: Context<ProviderContext> = createReactContext<
 >({
   state: {},
   horizon: Axios.create({ baseURL: '' }),
-  setState: () => {},
+  setState: () => undefined,
 });
+
+console.log('butts and stuff');
 
 export const { Consumer } = HorizonServerContext;
 
@@ -45,7 +47,7 @@ export class StellarProvider extends React.Component<Props, State> {
         value={{
           state: this.state,
           horizon: this.instance,
-          setState: this.setState,
+          setState: this.setState.bind(this),
         }}
       >
         {this.props.children}

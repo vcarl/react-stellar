@@ -9,16 +9,14 @@ import {
 import { Consumer, ProviderContext, Accounts } from './StellarProvider';
 import { parseAsset } from './helpers/assets';
 
-interface Props {
-  render(props: { account: ParsedStellarAccount }): JSX.Element;
-  context: ProviderContext;
+interface PublicProps {
   accountId: string;
+  render(props: { account: ParsedStellarAccount }): JSX.Element;
   [key: string]: any;
 }
 
-export interface StellarAccountRecord {
-  balances: Array<RawBalance>;
-  trustlines: Array<undefined>;
+interface Props extends PublicProps {
+  context: ProviderContext;
 }
 
 const parseBalances = (balances: Array<RawBalance>): Array<Balance> =>
@@ -74,6 +72,11 @@ class Account extends React.Component<Props> {
   }
 }
 
-export const StellarAccount = (props: Props) => (
+export interface StellarAccountRecord {
+  balances: Array<RawBalance>;
+  trustlines: Array<undefined>;
+}
+
+export const StellarAccount = (props: PublicProps) => (
   <Consumer>{(context) => <Account {...props} context={context} />}</Consumer>
 );
