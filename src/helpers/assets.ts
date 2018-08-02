@@ -1,11 +1,11 @@
-import { RawAsset, Asset } from '../../types/stellar';
+import { RawAsset, Asset } from "../../types/stellar";
 
 export const parseAsset = (asset: RawAsset): Asset => {
-  if (asset.asset_type === 'native') {
+  if (asset.asset_type === "native") {
     return {
       assetType: asset.asset_type,
-      assetCode: 'XLM',
-      assetIssuer: 'Stellar',
+      assetCode: "XLM",
+      assetIssuer: "Stellar",
     };
   }
   return {

@@ -1,8 +1,8 @@
-import React from 'react';
-import Axios, { AxiosInstance } from 'axios';
-import createReactContext, { Context } from 'create-react-context';
-import { Account } from '../types/stellar';
-import { createHorizonInstance } from './HorizonApi';
+import React from "react";
+import Axios, { AxiosInstance } from "axios";
+import createReactContext, { Context } from "create-react-context";
+import { Account } from "../types/stellar";
+import { createHorizonInstance } from "./HorizonApi";
 
 export interface ProviderContext {
   state: any;
@@ -26,11 +26,11 @@ const HorizonServerContext: Context<ProviderContext> = createReactContext<
   ProviderContext
 >({
   state: {},
-  horizon: Axios.create({ baseURL: '' }),
+  horizon: Axios.create({ baseURL: "" }),
   setState: () => undefined,
 });
 
-console.log('butts and stuff');
+console.log("butts and stuff");
 
 export const { Consumer } = HorizonServerContext;
 

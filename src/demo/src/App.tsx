@@ -1,8 +1,8 @@
-import * as React from 'react';
-import './App.css';
+import * as React from "react";
+import "./App.css";
 
-import { StellarProvider } from '../../StellarProvider';
-import { StellarAccount } from '../../StellarAccount';
+import { StellarProvider } from "../../StellarProvider";
+import { StellarAccount } from "../../StellarAccount";
 
 class App extends React.Component {
   public render() {

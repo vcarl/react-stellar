@@ -1,7 +1,7 @@
-import Big from 'big.js';
+import Big from "big.js";
 
-export type IssuedAssetType = 'credit_alphanum4' | 'credit_alphanum12';
-export type NativeAssetType = 'native';
+export type IssuedAssetType = "credit_alphanum4" | "credit_alphanum12";
+export type NativeAssetType = "native";
 export interface NativeAsset {
   asset_type: NativeAssetType;
 }

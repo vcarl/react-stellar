@@ -1,13 +1,13 @@
-import React from 'react';
-import Big from 'big.js';
-import { AccountRecord } from 'stellar-sdk';
+import React from "react";
+import Big from "big.js";
+import { AccountRecord } from "stellar-sdk";
 import {
   RawBalance,
   Balance,
   Account as ParsedStellarAccount,
-} from '../types/stellar';
-import { Consumer, ProviderContext, Accounts } from './StellarProvider';
-import { parseAsset } from './helpers/assets';
+} from "../types/stellar";
+import { Consumer, ProviderContext, Accounts } from "./StellarProvider";
+import { parseAsset } from "./helpers/assets";
 
 interface PublicProps {
   accountId: string;
@@ -21,12 +21,12 @@ interface Props extends PublicProps {
 
 const parseBalances = (balances: Array<RawBalance>): Array<Balance> =>
   balances.map((balance) => {
-    if (balance.asset_type === 'native') {
+    if (balance.asset_type === "native") {
       return {
         asset: parseAsset(balance),
         balance: Big(balance.balance),
         // Total issued Lumens
-        limit: Big('104144920420.1256628'),
+        limit: Big("104144920420.1256628"),
       };
     }
     return {
@@ -62,7 +62,7 @@ class Account extends React.Component<Props> {
           ...accounts,
           [publicKey]: parseAccountResponse(data),
         },
-      }))
+      })),
     );
   };
   render() {
