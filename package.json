@@ -16,6 +16,9 @@
     "react": ">=15"
   },
   "scripts": {
+    "demo:start": "node src/demo/scripts/start.js",
+    "demo:test": "node src/demo/scripts/test.js",
+    "demo:build": "node src/demo/scripts/build.js",
     "test": "jest --env=jsdom",
     "test:watch": "npm run test -- --watch",
     "start": "cp ./index.js ./dist/index.js && cross-env NODE_ENV=development rollup -w -c | tsc -w -p tsconfig.base.json",
