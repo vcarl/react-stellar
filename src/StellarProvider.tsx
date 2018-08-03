@@ -14,7 +14,7 @@ export interface Accounts {
   [key: string]: Account;
 }
 
-interface State {
+export interface State {
   accounts: Accounts;
 }
 

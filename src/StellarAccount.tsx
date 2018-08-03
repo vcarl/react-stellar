@@ -1,7 +1,8 @@
 import React from "react";
-import { Account as ParsedStellarAccount } from "../types/stellar";
+import { accountSelector } from "./selectors/accounts";
 import { Consumer, ProviderContext, Accounts } from "./StellarProvider";
 import { parseAccountResponse } from "./horizonApi/accounts";
+import { Account as ParsedStellarAccount } from "../types/stellar";
 
 interface PublicProps {
   accountId: string;
@@ -34,9 +35,9 @@ class Account extends React.Component<Props> {
     );
   };
   render() {
-    return this.props.render({
-      account: this.props.context.state.accounts[this.props.accountId],
-    });
+    return this.props.render(
+      accountSelector(this.props.context.state, this.props.accountId),
+    );
   }
 }
 
