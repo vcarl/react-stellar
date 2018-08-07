@@ -30,8 +30,6 @@ const HorizonServerContext: Context<ProviderContext> = createReactContext<
   setState: () => undefined,
 });
 
-console.log("butts and stuff");
-
 export const { Consumer } = HorizonServerContext;
 
 export class StellarProvider extends React.Component<Props, State> {
