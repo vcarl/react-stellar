@@ -1,8 +1,8 @@
 import React from "react";
+import { Account as ParsedStellarAccount } from "./types/stellar";
 import { accountSelector } from "./selectors/accounts";
 import { Consumer, ProviderContext, Accounts } from "./StellarProvider";
 import { parseAccountResponse } from "./horizonApi/accounts";
-import { Account as ParsedStellarAccount } from "../types/stellar";
 
 interface PublicProps {
   accountId: string;

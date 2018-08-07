@@ -1,7 +1,7 @@
 import React from "react";
 import Axios, { AxiosInstance } from "axios";
 import createReactContext, { Context } from "create-react-context";
-import { Account } from "../types/stellar";
+import { Account } from "./types/stellar";
 import { createHorizonInstance } from "./horizonApi/horizonInstance";
 
 export interface ProviderContext {

@@ -1,5 +1,5 @@
 import Big from "big.js";
-import { RawBalance, Balance } from "types/stellar";
+import { RawBalance, Balance } from "../types/stellar";
 import { parseAsset } from "./assets";
 
 export const parseBalance = (balance: RawBalance): Balance => {

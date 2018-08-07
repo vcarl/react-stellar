@@ -1,5 +1,5 @@
 import { AccountRecord } from "stellar-sdk";
-import { Account } from "types/stellar";
+import { Account } from "../types/stellar";
 import { parseBalances } from "./balances";
 
 export const parseAccountResponse = ({
