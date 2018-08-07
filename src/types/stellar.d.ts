@@ -36,7 +36,12 @@ export interface Balance {
   asset: Asset;
 }
 
+export interface Trustline {
+  asset: Asset;
+}
+
 export interface Account {
   id: string;
   balances: Array<Balance>;
+  trustlines: Array<Trustline>;
 }
