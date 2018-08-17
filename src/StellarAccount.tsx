@@ -1,18 +1,21 @@
 import React from "react";
 import { Account as ParsedStellarAccount } from "./types/stellar";
+import createReactContext from "create-react-context";
 import { accountSelector } from "./selectors/accounts";
 import { Consumer, ProviderContext, Accounts } from "./StellarProvider";
 import { parseAccountResponse } from "./horizonApi/accounts";
 
 interface PublicProps {
   accountId: string;
-  render(props: { account: ParsedStellarAccount }): JSX.Element;
+  render: (props: { account: ParsedStellarAccount }) => JSX.Element;
   [key: string]: any;
 }
 
 interface Props extends PublicProps {
   context: ProviderContext;
 }
+
+export const AccountContext = createReactContext("");
 
 class Account extends React.Component<Props> {
   componentDidMount() {
@@ -35,8 +38,12 @@ class Account extends React.Component<Props> {
     );
   };
   render() {
-    return this.props.render(
-      accountSelector(this.props.context.state, this.props.accountId),
+    return (
+      <AccountContext.Provider value={this.props.accountId}>
+        {this.props.render(
+          accountSelector(this.props.context.state, this.props.accountId),
+        )}
+      </AccountContext.Provider>
     );
   }
 }

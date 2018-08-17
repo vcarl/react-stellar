@@ -20,14 +20,17 @@ requesting resources or building further requests.
 <StellarProvider horizonServer="https://...">
   <Payments from to type sentAsset receivedAsset>
   </Payments>
-  <Wallet forAccount minBalance>
-  </Wallet>
-  <Trustlines forAccount>
-  </Trustlines>
-  <Trades forAccount>
-  </Trades>
-  <Offers forAccount>
-  </Offers>
+  <Account id="">
+    // Any of these can also take a forAccount prop
+    <Wallet minBalance>
+    </Wallet>
+    <Trustlines>
+    </Trustlines>
+    <Trades>
+    </Trades>
+    <Offers>
+    </Offers>
+  </Account>
 </Provider>
 ```
 
