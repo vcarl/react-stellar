@@ -1,6 +1,6 @@
 import React from "react";
 import Axios, { AxiosInstance } from "axios";
-import createReactContext, { Context } from "create-react-context";
+import createReactContext from "create-react-context";
 import { Account } from "./types/stellar";
 import { createHorizonInstance } from "./horizonApi/horizonInstance";
 
@@ -22,9 +22,7 @@ interface Props {
   horizonServer: string;
 }
 
-const HorizonServerContext: Context<ProviderContext> = createReactContext<
-  ProviderContext
->({
+const HorizonServerContext = createReactContext({
   state: {},
   horizon: Axios.create({ baseURL: "" }),
   setState: () => undefined,
